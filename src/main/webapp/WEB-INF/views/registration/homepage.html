@@ -4,15 +4,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
+<!--    <link rel="stylesheet" href="style/reset.css">-->
+    <link href="../../../resources/homepage/style.css" th:href="@{homepage/style.css}" rel="stylesheet" type="text/css">
     <title>Homepage</title>
+    <style>
+        * {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+
+
+        @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+:root {
+  --font-family: "Space Mono", sans-serif;
+  --second-family: "Work Sans", sans-serif;
+}
+
+.body {
+  background-color: #2b2b2b;
+  font-family: var(--second-family);
+  color: #fff;
+}
+
+.wrapper {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #2b2b2b;
+  opacity: 0.8;
+  width: 100%;
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.header__logo {
+  margin: 20px;
+}
+
+.logo {
+  font-family: var(--font-family);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  color: #9c9c9c;
+}
+
+.header__navigation {
+  display: flex;
+  align-items: center;
+}
+.header__navigation .header__navigation-item {
+  padding: 12px 20px;
+  margin: 5px;
+  transition: 0.3s;
+}
+
+.header__navigation-item:hover:not(:last-child) {
+  color: #ccc;
+}
+
+.header__navigation-item {
+  position: relative;
+  display: inline-block;
+}
+
+.header__profile {
+  margin: 0 10px 0 0;
+}
+
+.header__profile-title {
+  cursor: pointer;
+}
+
+.registration__button {
+  position: relative;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.registration__button:hover {
+  border-radius: 20px 20px 0 0;
+}
+.registration__button:hover .header__links {
+  display: block;
+  opacity: 1;
+}
+
+.header__links {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #3b3b3b;
+  min-width: 110px;
+  z-index: 1;
+  transition: opacity 1s;
+  border-radius: 0 0 20px 20px;
+}
+
+.link {
+  display: block;
+  color: #fff;
+  padding: 12px 16px;
+  transition: 0.3s;
+}
+
+.link:hover {
+  color: #9c9c9c;
+}
+
+.registration {
+  display: flex;
+  font-weight: 600;
+  padding: 20px 30px;
+  background-color: #a259ff;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+.registration img {
+  margin: -10px 5px;
+}
+
+.registration:hover {
+  background-color: #832ff1;
+}
+
+.main {
+  margin: 150px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.main__info {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.main__title {
+  overflow: hidden;
+  font-weight: 600;
+  font-size: 67px;
+  padding: 0 0 10px 0;
+}
+
+.main__text {
+  margin: 10px 0 30px 0;
+  max-width: 350px;
+}
+
+.text {
+  padding: 5px;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.main__button {
+  text-align: center;
+  font-weight: 600;
+  margin: 20px auto 30px auto;
+  border-radius: 20px;
+  width: 600px;
+  padding: auto;
+}
+.main__button p{
+    padding: auto;
+}
+
+.main__characteristic {
+  display: flex;
+  justify-content: space-between;
+}
+
+.haracteristic__number {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.main__image img {
+  max-width: 510px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.category {
+  margin: -50px auto 80px auto;
+}
+
+.category__title {
+  margin: 0 0 60px 0;
+}
+
+.title {
+  padding: 5px;
+  font-weight: 600;
+  font-size: 38px;
+}
+
+.category__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.category__item {
+  display: block;
+  margin: 15px;
+  border-radius: 20px;
+  background-color: #a259ff;
+  transition: 0.3s;
+}
+
+.category__item:hover {
+  background-color: #832ff1;
+  color: #9c9c9c;
+}
+
+.category__item-image {
+  display: block;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 20px 20px 0 0;
+}
+
+.category__item-title {
+  font-weight: 600;
+  font-size: 22px;
+  padding: 20px 30px 25px 30px;
+  background-color: #3b3b3b;
+  border-radius: 0 0 20px 20px;
+}
+
+.how-work {
+  margin: 0 auto 80px auto;
+}
+
+.how-work__title {
+  margin: 0 0 10px 0;
+}
+
+.how-work__text {
+  margin: 0 0 50px 0;
+}
+
+.how-work__cards {
+  display: flex;
+  text-align: center;
+}
+
+.how-work__card {
+  margin: 0 15px;
+  border-radius: 20px;
+  background-color: #3b3b3b;
+  width: 330px;
+  padding: 10px;
+}
+
+.card__img {
+  padding: 10px;
+  margin: 0 0 20px 0;
+}
+
+.card__title {
+  padding: 5px;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+}
+
+.card__text {
+  padding: 5px;
+  font-weight: 400;
+  margin: 0 0 10px 0;
+}
+
+.footer {
+  background-color: #3b3b3b;
+  padding: 0 0 10px 0;
+}
+
+.footer__parts {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.footer__part {
+  max-width: 240px;
+}
+
+.footer__title {
+  font-family: var(--font-family);
+  font-size: 24px;
+  margin: 0 0 30px 0;
+}
+
+.footer__text {
+  margin: 0 0 20px 0;
+}
+
+.social {
+  margin: 25px 0 0 0;
+  display: flex;
+}
+.social a {
+  margin: 0 10px 0 0;
+}
+
+.footer__registration {
+  width: 55%;
+}
+
+.part2 p {
+  margin: 0 0 10px 0;
+}
+.part2 p :hover {
+  color: #9c9c9c;
+}
+
+.part3 {
+  max-width: 350px;
+}
+    </style>
 </head>
 
 <body class="body">
     <header class="header">
         <a class="header__logo logo">
-            <img src="img/icon/nav_icon/Storefront.svg" alt="logo">
             <nav>VIPA</nav>
         </a>
         <div class="header__navigation">
@@ -21,7 +430,6 @@
             <a href="#" class="header__navigation-item">Cart</a>
             <div class="header__profile">
                 <div class="registration__button registration">
-                    <img src="img/icon/nav_icon/User.svg" alt="User">
                     <p class="header__profile-title">Profile</p>
                     <div class="header__links">
                         <a href="#" class="link">Profile</a>
@@ -43,8 +451,7 @@
             <nav>Find more than million users interested in products</nav>
             </p>
             <div class="main__button">
-                <a href="../create_account/create_account.html" class="registration">
-                    <img src="img/icon/RocketLaunch.svg" alt="rocket">
+                <a th:href="@{/clients/new}" class="registration">
                     <p>Get Started</p>
                 </a>
             </div>
@@ -63,92 +470,17 @@
                 </div>
             </div>
         </div>
-        <div class="main__image">
-            <img src="img/image_/photo_2024-11-05_20-01-48.jpg" alt="sale__img">
-        </div>
-    </div>
-    <div class="category wrapper">
-        <div class="category__title title">
-            <p>Browse Categories</p>
-        </div>
-        <div class="category__buttons">
-            <a href="#" class="category__item">
-                <img src="img/icon/PaintBrush.svg" alt="art" class="category__item-image">
-                <p class="category__item-title">Art</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/Swatches.svg" alt="collectibles" class="category__item-image">
-                <p class="category__item-title">Collectibles</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/MusicNotes.svg" alt="music" class="category__item-image">
-                <p class="category__item-title">Music</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/Camera.svg" alt="photography" class="category__item-image">
-                <p class="category__item-title">Photography</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/VideoCamera.svg" alt="video" class="category__item-image">
-                <p class="category__item-title">Video</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/MagicWand.svg" alt="utility" class="category__item-image">
-                <p class="category__item-title">Utility</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/Basketball.svg" alt="sport" class="category__item-image">
-                <p class="category__item-title">Sport</p>
-            </a>
-            <a href="#" class="category__item">
-                <img src="img/icon/Planet.svg" alt="world" class="category__item-image">
-                <p class="category__item-title">Virtual Worlds</p>
-            </a>
-        </div>
-    </div>
-    <div class="how-work wrapper">
-        <div class="how-work__title title">
-            <p>How it works</p>
-        </div>
-        <div class="how-work__text text">
-            <p>Find out how to get started</p>
-        </div>
-        <div class="how-work__cards">
-            <div class="how-work__card">
-                <img src="img/icon/Icon.svg" alt="wallet" class="card__img">
-                <p class="card__title">Sing Up</p>
-                <p class="card__text">Set up your wallet of choice. Connect it to the Animarket by clicking the wallet
-                    icon.</p>
-            </div>
-            <div class="how-work__card">
-                <img src="img/icon/Icon-1.svg" alt="wallet" class="card__img">
-                <p class="card__title">Create Post</p>
-                <p class="card__text">Upload your work and setup your collection. Add a description, social links and
-                    floor price.</p>
-            </div>
-            <div class="how-work__card">
-                <img src="img/icon/Icon-2.svg" alt="wallet" class="card__img">
-                <p class="card__title">Start Trading</p>
-                <p class="card__text">Choose between auctions and fixed-price listings. Start earning by selling your
-                    NFTs or trading others.</p>
-            </div>
-        </div>
     </div>
     <footer class="footer">
         <div class="footer__parts wrapper">
             <div class="footer__part part1">
                 <a class="footer__title logo">
-                    <img src="img/icon/nav_icon/Storefront.svg" alt="logo">
                     <nav>VIPA</nav>
                 </a>
                 <p class="footer__text">
                 <nav>NFT marketplace UI created with Anima for Figma.</nav>
                 <nav>Join our community</nav>
                 <div class="social">
-                    <a href="#"><img src="img/icon/nav_icon/DiscordLogo.svg" alt="discord"></a>
-                    <a href="#"><img src="img/icon/nav_icon/YoutubeLogo.svg" alt="youtube"></a>
-                    <a href="#"><img src="img/icon/nav_icon/TwitterLogo.svg" alt="twitter"></a>
-                    <a href="#"><img src="img/icon/nav_icon/InstagramLogo.svg" alt="instagram"></a>
                 </div>
                 </p>
             </div>
@@ -170,7 +502,6 @@
                     Get exclusive promotions & updates straight to your inbox.
                 </p>
                 <a href="../create_account/create_account.html" class="footer__registration registration">
-                    <img src="img/icon/RocketLaunch.svg" alt="rocket">
                     <p>Get Started</p>
                 </a>
             </div>

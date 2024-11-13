@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
     private final ClientService clientService;
 
+    @GetMapping("/getStyles")
+    public String getStyles() {
+        return "registration/style.css";
+    }
+
     @GetMapping("/{clientId}")
     public String getClient(Model model, @PathVariable(name = "clientId") int clientId) {
         Client client = clientService.getClient(clientId);
@@ -30,6 +35,7 @@ public class ClientController {
 
     @GetMapping("/new")
     public String newClient(Model model) {
+        System.out.println("Inside newClient()");
         model.addAttribute("client", new Client());
         return "registration/create_account";
     }
@@ -48,6 +54,16 @@ public class ClientController {
         return "registration/logIn";
     }
 
+    @PostMapping("/logIn")
+    public String signIn(Model model, SignInDto signInDto) {
+        System.out.println(signInDto.getEmail() + "");
+        System.out.println(signInDto.getPassword() + "");
+        Client result = clientService.signIn(signInDto.getEmail(), signInDto.getPassword());
+        model.addAttribute("client", result);
+        return "redirect:/clients/registration/homepage";
+
+    }
+
     @GetMapping("/registration/homepage")
     public String showHomePage() {
         System.out.println("inside showHomePage()");
@@ -55,7 +71,7 @@ public class ClientController {
     }
 
     @PostMapping("/signUp")
-    public String addClient(@ModelAttribute("client") Client client){
+    public String addClient(@ModelAttribute("client") Client client) {
         System.out.println("Получили из формы: " + client);
         clientService.createNewClient(client);
         System.out.println("Пользователь успешно зарегистрирован.");

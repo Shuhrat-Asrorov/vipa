@@ -36,5 +36,25 @@ public class ClientService {
         clientRepository.deleteById(id);
     }
 
+    public Client signIn(String email, String password) {
+        Client client = clientRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Пользователь с таким адресом не найден"));
+        System.out.println(client.getEmail());
+        System.out.println(client.getPassword());
+        if (password.equals(client.getPassword()))
+            return client;
+        else {
+            throw new RuntimeException("Неверный пароль");
+        }
+    }
 
+//    public Client signIn(String email, String password) {
+//        Client client = clientRepository.findByEmail(email)
+//                .orElseThrow(() -> new RuntimeException("Пользователь с таким адресом не найден"));
+//        if (password.equals(client.getPassword()))
+//            return client;
+//        else {
+//            throw new RuntimeException("Неверный пароль");
+//        }
+//    }
 }

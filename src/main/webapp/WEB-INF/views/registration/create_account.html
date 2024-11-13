@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/reset.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link th:href="@{styles/style.css}" rel="stylesheet">
+<!--    <link rel="stylesheet" href="">-->
     <title>Create Account</title>
 </head>
 
 <body class="body">
     <header class="header">
-        <a class="header__logo logo" href="../homepage/homepage.html">
+        <a class="header__logo logo" th:href="@{registration/homepage}">
             <img src="img/icon/nav_icon/Storefront.svg" alt="logo">
             <nav>VIPA</nav>
         </a>
@@ -25,8 +25,8 @@
                     <p class="header__profile-title">Profile</p>
                     <div class="header__links">
                         <a href="#" class="link">Profile</a>
-                        <a href="../log_in/log_in.html" class="link">Log in</a>
-                        <a href="../create_account/create_account.html" class="link">Sing in</a>
+                        <a th:href="@{/clients/logIn}" class="link">Sign In</a>
+                        <a th:href="@{/clients/new}" class="link">Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <input th:field="*{phoneNumber}" id="phone_number" type="tel" placeholder="+7 (XXX) XXX-XX-XX" class="form__number form__input">
                 <input th:field="*{email}" id="email" type="email" placeholder="Your email" class="form__email form__input">
                 <input th:field="*{password}" id="password" type="text" placeholder="Password" class="form__password form__input">
-                <input th:field="*{password}" id="password_confirm" type="text" placeholder="Password" class="form__password form__input">
+<!--                <input th:field="*{password}" id="password_confirm" type="text" placeholder="Password" class="form__password form__input">-->
                 <button type="submit" class="form__button">
                     Create account
                 </button>
@@ -60,7 +60,7 @@
     <footer class="footer">
         <div class="footer__parts wrapper">
             <div class="footer__part part1">
-                <a href="../homepage/homepage.html" class="footer__title logo">
+                <a th:href="@{registration/homepage}" class="footer__title logo">
                     <img src="img/icon/nav_icon/Storefront.svg" alt="logo">
                     <nav>VIPA</nav>
                 </a>

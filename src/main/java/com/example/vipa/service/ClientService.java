@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,6 +25,9 @@ public class ClientService {
     }
 
     public Client createNewClient(Client newClient) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(newClient.getPassword());
+        newClient.setPassword(hashedPassword);
         return clientRepository.save(newClient);
     }
 
@@ -41,7 +45,13 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("Пользователь с таким адресом не найден"));
         System.out.println(client.getEmail());
         System.out.println(client.getPassword());
-        if (password.equals(client.getPassword()))
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        System.out.println(password);
+
+
+
+        if (passwordEncoder.matches(password, hashedPassword))
             return client;
         else {
             throw new RuntimeException("Неверный пароль");
